@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import './BaseWorth.css';
+function getXhr(props){
+    var url="http://qq.kkiqq.cn/api/baseworth";
+    var xhr=new XMLHttpRequest();
+    var baseData={};
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState===4){
+            var res=xhr.responseText;
+            var data=res.length;
+            baseData=JSON.parse(xhr.responseText).data[0];
+        }
+    }
+    xhr.open('GET',url,true);
+    xhr.send();
+    return baseData;
+};
 
+componentDidMount: function(){
+    getXhr()
+};
 function formate(number){
     console.log(number);
     return number.toFixed(4)

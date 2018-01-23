@@ -7,7 +7,7 @@ import DeliverWorth from './DeliverWorth';
 class Myapp extends Component{
     constructor(props){
         super(props);
-        this.state={activeBar:"project"};
+        this.state={activeBar:"baseWorth"};
 
         this.ToBaseWorth=this.ToBaseWorth.bind(this);
         this.ToProject=this.ToProject.bind(this);
