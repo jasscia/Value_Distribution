@@ -18,12 +18,13 @@ class BaseData extends Component{
     };
 
     componentDidMount(){
+        
         let url="http://qq.kkiqq.cn/api/baseworth";
         let method='GET';
         let data=null;
-        xhr(method,url,data,(response)=>{
+        xhr(method,url,data)
+        .then((response)=>{
             let baseData=response.data[0];
-            console.log(baseData);
             this.setState({
                 baseWorth:baseData.baseWorth,
                 basePerson:baseData.basePerson,
@@ -40,11 +41,10 @@ class BaseData extends Component{
             baseWorth:this.state.baseWorth,
             basePerson:this.state.basePerson,
             baseDay:this.state.baseDay,
-            baseWorthUnit:this.state.baseUnitWorth
+            baseUnitWorth:this.state.baseUnitWorth
         };
-        xhr(method,url,data,(response)=>{
-            console.log(response);
-        });
+        xhr(method,url,JSON.stringify(data))
+        .then((res)=>{});
     };
 
     changebaseWorth(e){
