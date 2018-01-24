@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Project.less';
-import {xhr} from './util.js'
+import {xhr} from './util.js';
+import './util.css';
 
 
 class Project extends Component{
@@ -79,6 +80,7 @@ function Edit(props){
             <input id="calcTimeLimit"></input>
             <label htmlFor="calcTimeLimit">天</label>
         </div>
+        <button>确认提交</button>
     </form>
     return element;
 }

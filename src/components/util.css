@@ -1,0 +1,12 @@
+em{
+  color:lightseagreen
+}
+button{
+  height: 40px;
+  width:150px;
+  border-radius: 10px;
+  border:none;
+  font-size: 18px;
+  letter-spacing: 5px;
+  background: #eee;
+}
