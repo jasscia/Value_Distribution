@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Project.css';
+import './Project.less';
 import {xhr} from './util.js'
 
 
@@ -66,13 +66,18 @@ function ProjectInfoItem(props){
 function Edit(props){
     const element=<form className="createItem">
         <div>
-            <label for="projectName">项目名称:</label><input id="projectName"></input>
+            <label htmlFor="projectName">项目名称:</label>
+            <input id="projectName"></input>
         </div>
         <div>
-            <label for="contractAmount">合同额：$</label><input id="contractAmount"></input><label for="contractAmount">万</label>
+            <label htmlFor="contractAmount">合同额：$</label>
+            <input id="contractAmount"></input>
+            <label htmlFor="contractAmount">万</label>
         </div>
         <div>
-            <label for="calcTimeLimit">计算工期：</label><input id="calcTimeLimit"></input><label for="calcTimeLimit">天</label>
+            <label htmlFor="calcTimeLimit">计算工期：</label>
+            <input id="calcTimeLimit"></input>
+            <label htmlFor="calcTimeLimit">天</label>
         </div>
     </form>
     return element;

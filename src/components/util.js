@@ -4,8 +4,7 @@ export function xhr(method,url,data){
       
       var xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){
-          if(xhr.readyState===4){
-            // console.log(data);      
+          if(xhr.readyState===4){    
               resolve(JSON.parse(xhr.responseText));
           }
       }

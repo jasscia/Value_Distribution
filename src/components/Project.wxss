@@ -1,0 +1,58 @@
+.projectInfo {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 60px;
+  font-size: 0;
+  color: #000000;
+  overflow: hidden;
+}
+.projectInfo .search {
+  margin: 20px 10px 10px 10px;
+  width: calc(80%);
+  height: 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+.projectInfo .create {
+  font-size: 14px;
+  text-align: center;
+  text-decoration: underline;
+}
+.projectInfo .projectInfoItem {
+  border: 1px solid #eee;
+  margin: 10px 0;
+  padding: 5px 10px;
+  background: #efefef;
+}
+.projectInfo .projectInfoItem .projectName {
+  font-size: 18px;
+  text-align: center;
+  display: flex;
+}
+.projectInfo .projectInfoItem .projectName .proName {
+  flex: 1;
+}
+.projectInfo .projectInfoItem .projectName .edit {
+  font-size: 14px;
+  color: lightblue;
+  text-decoration: underline;
+}
+.projectInfo .projectInfoItem .projectBaseInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 3px 0;
+}
+.projectInfo .projectInfoItem .projectPreson {
+  font-size: 14px;
+}
+.projectInfo .projectInfoItem .projectPreson .preson {
+  padding: 3px 0;
+}
+.projectInfo .projectInfoItem .projectPreson .presonName {
+  font-size: 12px;
+}
+em {
+  color: lightseagreen;
+}
