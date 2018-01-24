@@ -29,8 +29,8 @@ class Project extends Component{
                 {/* <div className="search"> */}
                     <input className="search" placeholder="按项目名称搜索"></input>
                 {/* </div> */}
-                <div className="create">
-                    <form></form>
+                <div className="create">                    
+                    <Edit />
                     <span>创建新项目</span>
                 </div>
                 <ProjectInfoList data={this.state.projectInfoList}/>
@@ -62,5 +62,19 @@ function ProjectInfoItem(props){
                     </section>
                 </section>
     return  element   
+}
+function Edit(props){
+    const element=<form className="createItem">
+        <div>
+            <label for="projectName">项目名称:</label><input id="projectName"></input>
+        </div>
+        <div>
+            <label for="contractAmount">合同额：$</label><input id="contractAmount"></input><label for="contractAmount">万</label>
+        </div>
+        <div>
+            <label for="calcTimeLimit">计算工期：</label><input id="calcTimeLimit"></input><label for="calcTimeLimit">天</label>
+        </div>
+    </form>
+    return element;
 }
 export default Project;

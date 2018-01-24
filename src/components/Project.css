@@ -23,6 +23,9 @@
     text-align: center;
     text-decoration: underline;
 }
+.createItem{
+    /* display: flex; */
+}
 .projectInfoItem{
     border:1px solid #eee;
     margin:10px 0;
