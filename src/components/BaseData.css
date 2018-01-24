@@ -22,12 +22,3 @@ input{
     width:100px;
     border: solid 2px #eee;
 }
-button{
-    height: 40px;
-    width:150px;
-    border-radius: 10px;
-    border:none;
-    font-size: 18px;
-    letter-spacing: 5px;
-    background: #eee;
-}
