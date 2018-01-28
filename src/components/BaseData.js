@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './BaseData.css';
-import './util.css';
+import './BaseData.less';
 import { xhr,formateNumber } from './util';
 
 class BaseData extends Component{

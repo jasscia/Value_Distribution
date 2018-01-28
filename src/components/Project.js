@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Project.less';
 import {xhr} from './util.js';
-import './util.css';
+import CreatePro from './CreatePro';
 
 
 class Project extends Component{
@@ -10,7 +10,7 @@ class Project extends Component{
         
         this.state={
             projectInfoList:[]
-        }
+        };
     };
     componentDidMount(){
         let url="http://qq.kkiqq.cn/api/project",
@@ -23,15 +23,14 @@ class Project extends Component{
                 projectInfoList:res.data
             });
         });
-    }
+    };
+    
     render(){
         return (
             <div className="projectInfo">
-                {/* <div className="search"> */}
-                    <input className="search" placeholder="按项目名称搜索"></input>
-                {/* </div> */}
+                <input className="search" placeholder="按项目名称搜索"></input>
                 <div className="create">                    
-                    <Edit />
+                    <CreatePro />
                     <span>创建新项目</span>
                 </div>
                 <ProjectInfoList data={this.state.projectInfoList}/>
@@ -50,11 +49,11 @@ function ProjectInfoItem(props){
     const element=<section className="projectInfoItem">                   
                     <section className="projectName">
                         <strong className="proName">{data.project_name}</strong>
-                        <span className="edit">编辑</span>
+                        <span className="edit">more>></span>
                     </section>
                     <section className="projectBaseInfo"> 
-                        <div className="projectWorth">合同额$<em>{data.worth}</em>&ensp;万</div>
-                        <div className="projectDays">工期<em>{data.day_num}</em>&ensp;天</div>
+                        <div className="projectWorth">合同额：$<em>{data.worth}</em>&ensp;万</div>
+                        <div className="projectDays">工期：<em>{data.day_num}</em>&ensp;天</div>
                     </section>
                     <section className="projectPreson">
                         <div className="preson leader">负责人：<em className="presonName">{data.person_num}</em></div>
@@ -64,24 +63,5 @@ function ProjectInfoItem(props){
                 </section>
     return  element   
 }
-function Edit(props){
-    const element=<form className="createItem">
-        <div>
-            <label htmlFor="projectName">项目名称:</label>
-            <input id="projectName"></input>
-        </div>
-        <div>
-            <label htmlFor="contractAmount">合同金额：</label>
-            <input id="contractAmount"></input>
-            <label htmlFor="contractAmount">万</label>
-        </div>
-        <div>
-            <label htmlFor="calcTimeLimit">计算工期：</label>
-            <input id="calcTimeLimit"></input>
-            <label htmlFor="calcTimeLimit">天</label>
-        </div>
-        <button>确认提交</button>
-    </form>
-    return element;
-}
+
 export default Project;

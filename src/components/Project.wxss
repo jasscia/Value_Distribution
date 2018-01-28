@@ -1,9 +1,21 @@
+em {
+  color: lightseagreen;
+}
+button {
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  letter-spacing: 5px;
+  background: lightgreen;
+}
 .projectInfo {
   width: 100%;
   padding: 0;
   margin-bottom: 60px;
   font-size: 0;
-  color: #000000;
+  color: #000;
   overflow: hidden;
 }
 .projectInfo .search {
@@ -11,36 +23,13 @@
   width: calc(100% - 20px);
   height: 30px;
   border-radius: 10px;
+  border: 1px solid lightgrey;
   font-size: 16px;
   text-align: center;
-}
-.projectInfo .create {
-  font-size: 14px;
-  text-align: center;
-  text-decoration: underline;
-}
-.projectInfo .create .createItem {
-  border: 1px solid #eee;
-  padding: 10px;
-  text-align: center;
-}
-.projectInfo .create .createItem div {
-  margin: 10px 0;
-  letter-spacing: 2px;
-}
-.projectInfo .create .createItem div input {
-  width: 150px;
-  font-size: 14px;
-  text-indent: 4px;
-}
-.projectInfo .create .createItem div label {
-  font-size: 16px;
 }
 .projectInfo .projectInfoItem {
-  border: 1px solid #eee;
-  margin: 10px 0;
+  border-bottom: 3px solid lightgrey;
   padding: 5px 10px;
-  background: #efefef;
 }
 .projectInfo .projectInfoItem .projectName {
   font-size: 18px;
@@ -52,8 +41,7 @@
 }
 .projectInfo .projectInfoItem .projectName .edit {
   font-size: 14px;
-  color: lightblue;
-  text-decoration: underline;
+  color: lightseagreen;
 }
 .projectInfo .projectInfoItem .projectBaseInfo {
   display: flex;
@@ -69,7 +57,4 @@
 }
 .projectInfo .projectInfoItem .projectPreson .presonName {
   font-size: 12px;
-}
-em {
-  color: lightseagreen;
 }
