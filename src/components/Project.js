@@ -71,7 +71,7 @@ function Edit(props){
             <input id="projectName"></input>
         </div>
         <div>
-            <label htmlFor="contractAmount">合同额：$</label>
+            <label htmlFor="contractAmount">合同金额：</label>
             <input id="contractAmount"></input>
             <label htmlFor="contractAmount">万</label>
         </div>
