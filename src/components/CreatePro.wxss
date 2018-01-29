@@ -35,3 +35,10 @@ button {
 .create .createItem .item label {
   text-decoration: none;
 }
+.create .createItem .item #basScale {
+  border: 0;
+  border-bottom: 2px solid lightgrey;
+  color: lightseagreen;
+  font-style: italic;
+  font-weight: bolder;
+}

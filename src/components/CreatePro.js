@@ -7,17 +7,17 @@ class  CreatePro extends Component{
         super(props);
         
         this.state={
-            newProjectName:'',
-            newWorth:'',
-            newPresonNum:'',
-            newDayNum:'',
-            newBaseScale:'',
-            newDetail:[]
+            newProjectName:'山西引黄衬砌检测',
+            newWorth:10,
+            newPresonNum:4,
+            newDayNum:3,
+            newBaseScale:0.9,
+            newDetail:[{username:'张三'}]
         };
         this.postNewInfo=this.postNewInfo.bind(this);
         this.handleProjectName=this.handleProjectName.bind(this);
         this.handleWorth=this.handleWorth.bind(this);
-        this.handlePersonNum=this.handlePersonNum.bind(this);
+        this.handlePresonNum=this.handlePresonNum.bind(this);
         this.handleDaynum=this.handleDaynum.bind(this);
         this.handleBaseScale=this.handleBaseScale.bind(this);
         this.handleDetail=this.handleDetail.bind(this);
@@ -28,7 +28,7 @@ class  CreatePro extends Component{
         let data={
             project_name:this.state.newProjectName,
             worth:this.state.newWorth,
-            preson_num:this.newPresonNum,
+            preson_num:this.state.newPresonNum,
             day_num:this.state.newDayNum,
             base_scale:this.state.newBaseScale,
             detail:this.state.newDetail
@@ -48,7 +48,7 @@ class  CreatePro extends Component{
             newWorth:e.target.value
         });
     };
-    handlePersonNum(e){
+    handlePresonNum(e){
         this.setState({
             newPresonNum:e.target.value
         });
@@ -88,13 +88,13 @@ class  CreatePro extends Component{
                 <label htmlFor="dayNum">&ensp;天</label>
             </div>
             <div className="item">
-                <label htmlFor="personNum">人员投入：</label>
-                <input id="personNum" onChange={this.handlePersonNum}></input>
-                <label htmlFor="personNum">&ensp;人</label>
+                <label htmlFor="presonNum">人员投入：</label>
+                <input id="presonNum" onChange={this.handlePresonNum}></input>
+                <label htmlFor="presonNum">&ensp;人</label>
             </div>
             <div className="item">
                 <label htmlFor="basScale">难度系数：</label>
-                <input id="basScale" onChange={this.handleBaseScale}></input>
+                <input id="basScale" onChange={this.handleBaseScale} disabled="disabled"></input>
                 <label htmlFor="basScale">&ensp;&ensp;</label>
             </div>
             <button onClick={this.postNewInfo}>提交</button> 
