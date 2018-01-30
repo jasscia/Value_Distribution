@@ -16,25 +16,29 @@ class Project extends Component{
         this.handleCreatePage=this.handleCreatePage.bind(this);
     };
     componentDidMount(){
-        let url="http://qq.kkiqq.cn/api/project",
-            method="GET",
-            data=null;
-            xhr(method,url,data)
-            .then((res)=>{
-                this.setState({
-                    projectInfoList:res.data
-                });
-            });
+        this.updateProList();
     };
+    updateProList(){
+        let url="http://qq.kkiqq.cn/api/project",
+        method="GET",
+        data=null;
+        xhr(method,url,data)
+        .then((res)=>{
+            this.setState({
+                projectInfoList:res.data
+            });
+        });
+    }
     handleCreatePage(itemInfo){
         this.setState({
             ifShowCreatePage:!this.state.ifShowCreatePage
         });
-        if(itemInfo){
+        // if(itemInfo){
             this.setState({
-                activeItemInfo:itemInfo
+                activeItemInfo:itemInfo?itemInfo:''
             })
-        }
+        // };
+        this.updateProList();
     }
     render(){
         if (this.state.ifShowCreatePage){
@@ -75,9 +79,9 @@ function ProjectInfoItem(props){
                         <div className="projectDays">工期：<em>{data.day_num}</em>&ensp;天</div>
                     </section>
                     <section className="projectPreson">
-                        <div className="preson leader">负责人：<em className="presonName">{data.person_num}</em></div>
-                        <div className="preson main">主要参与：<em className="presonName">{data.person_num}</em></div>
-                        <div className="preson side">辅助：<em className="presonName">{data.person_num}</em></div>
+                        <div className="preson leader">负责人：<em className="presonName">{data.detail[0].leader}</em></div>
+                        <div className="preson main">主要参与：<em className="presonName">{data.detail[1].main.join(',')}</em></div>
+                        <div className="preson side">辅助：<em className="presonName">{data.detail[2].side.join(',')}</em></div>
                     </section>
                 </section>
     return  element   

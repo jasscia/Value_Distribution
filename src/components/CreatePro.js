@@ -11,11 +11,15 @@ class  CreatePro extends Component{
             newWorth:12,
             newPersonNum:4,
             newDayNum:3,
-            newDetail:[{username:'张三'}],
+            newDetail:[
+                {leader:'Jabo'},
+                {main:['张三','李四','王五','赵六']},
+                {side:['jassy','jack','rose','qurry','lily','alise','black','carl']}
+                ],
 
             baseUnitWorth:2.5
         };
-        this.postNewInfo=this.postNewInfo.bind(this);
+        this.updateProInfo=this.updateProInfo.bind(this);
         this.delItem=this.delItem.bind(this);
         this.cancleCreate=this.cancleCreate.bind(this);
         this.handleInputData=this.handleInputData.bind(this);
@@ -35,8 +39,8 @@ class  CreatePro extends Component{
             });
         }
         //获取 产值基数
-        let url="http://qq.kkiqq.cn/api/baseworth",
-            method="GET",
+        let url='http://qq.kkiqq.cn/api/baseworth',
+            method='GET',
             data=null;
             xhr(method,url,data)
             .then((res)=>{
@@ -45,9 +49,10 @@ class  CreatePro extends Component{
                 });
             });
     };
-    postNewInfo(){
-        let url="http://qq.kkiqq.cn/api/project";
-        let method='POST';
+    updateProInfo(){
+        let url=this.props.data?'http://qq.kkiqq.cn/api/project/'+this.props.data.id:'http://qq.kkiqq.cn/api/project';
+        let method=this.props.data?'PUT':'POST';
+        
         let data={
             project_name:this.state.newProjectName,
             worth:this.state.newWorth,
@@ -57,18 +62,25 @@ class  CreatePro extends Component{
             detail:this.state.newDetail
         };
         xhr(method,url,JSON.stringify(data))
-        .then((res)=>{
+        .then(res=>{
             this.props.handleCreatePage();
         });
     };
+    
     cancleCreate(){
         this.props.handleCreatePage();
     }
     delItem(){
-        this.props.handleCreatePage();
+        if(!this.props.data){return}
+        let url='http://qq.kkiqq.cn/api/project/'+this.props.data.id;
+        let method='DELETE';
+        let data={};
+        xhr(method,url,JSON.stringify(data))
+        .then(res=>{
+            this.props.handleCreatePage();
+        })
     }
     handleInputData(e,handleObj){
-        console.log(e.target.value);
         this.setState({
             [handleObj]:e.target.value
         });
@@ -117,7 +129,7 @@ class  CreatePro extends Component{
                     <em>{formateNumber(this.state.baseUnitWorth/(this.state.newWorth/this.state.newDayNum/this.state.newPersonNum),2)}</em>
                 </section>
             </div>
-            <button onClick={this.postNewInfo}>提交</button>            
+            <button onClick={this.updateProInfo}>提交</button>            
             <button onClick={this.delItem}>删除</button>
         </div>
         );
