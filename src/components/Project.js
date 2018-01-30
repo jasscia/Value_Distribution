@@ -16,13 +16,12 @@ class Project extends Component{
         let url="http://qq.kkiqq.cn/api/project",
             method="GET",
             data=null;
-        // let res = await xhr(method,url,data);
-        xhr(method,url,data)
-        .then((res)=>{
-            this.setState({
-                projectInfoList:res.data
+            xhr(method,url,data)
+            .then((res)=>{
+                this.setState({
+                    projectInfoList:res.data
+                });
             });
-        });
     };
     
     render(){

@@ -4,9 +4,10 @@ export function xhr(method,url,data){
       
       var xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){
-          if(xhr.readyState===4){    
+          try{if(xhr.readyState===4 && xhr.status===200){    
               resolve(JSON.parse(xhr.responseText));
           }
+        }catch(error){console.log(error)}
       }
       xhr.open(method,url,true);
       if(method!=="GET"){

@@ -26,17 +26,6 @@ class Myapp extends Component{
 
 
     render(){
-        function Content(props) {
-            if (props.activeBar==="baseData") {
-              return <BaseData />;
-            }
-            if (props.activeBar==="project") {
-                return <Project />;
-            }
-            if (props.activeBar==="deliverWorth") {
-                return <DeliverWorth />;
-            }
-          }
 
         return (<div className="myApp">
             <div className="content">
@@ -51,4 +40,15 @@ class Myapp extends Component{
     }
 
 }
+function Content(props) {
+    if (props.activeBar==="baseData") {
+      return <BaseData />;
+    }
+    if (props.activeBar==="project") {
+      return <Project />;
+    }
+    if (props.activeBar==="deliverWorth") {
+      return <DeliverWorth />;
+    }
+  }
 export default Myapp;

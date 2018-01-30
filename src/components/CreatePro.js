@@ -15,12 +15,7 @@ class  CreatePro extends Component{
             newDetail:[{username:'张三'}]
         };
         this.postNewInfo=this.postNewInfo.bind(this);
-        this.handleProjectName=this.handleProjectName.bind(this);
-        this.handleWorth=this.handleWorth.bind(this);
-        this.handlePresonNum=this.handlePresonNum.bind(this);
-        this.handleDaynum=this.handleDaynum.bind(this);
-        this.handleBaseScale=this.handleBaseScale.bind(this);
-        this.handleDetail=this.handleDetail.bind(this);
+        this.handleInputData=this.handleInputData.bind(this);
     };
     postNewInfo(){
         let url="http://qq.kkiqq.cn/api/project";
@@ -38,34 +33,9 @@ class  CreatePro extends Component{
         .then((res)=>{});
 
     };
-    handleProjectName(e){
+    handleInputData(e,handleObj){
         this.setState({
-            newProjectName:e.target.value
-        });
-    };
-    handleWorth(e){
-        this.setState({
-            newWorth:e.target.value
-        });
-    };
-    handlePresonNum(e){
-        this.setState({
-            newPresonNum:e.target.value
-        });
-    };
-    handleDaynum(e){
-        this.setState({
-            newDayNum:e.target.value
-        });
-    };
-    handleBaseScale(e){
-        this.setState({
-            newBaseScale:e.target.value
-        });
-    };
-    handleDetail(e){
-        this.setState({
-            newDetail:e.target.value
+            [handleObj]:e.target.value
         });
     };
     
@@ -74,27 +44,27 @@ class  CreatePro extends Component{
             <div className="createItem" >
             <div className="item">
                 <label htmlFor="projectName">项目名称：</label>
-                <input id="projectName" onChange={this.handleProjectName}></input>
+                <input id="projectName" onChange={(e)=>this.handleInputData(e,"newProjectName")}></input>
                 <label htmlFor="projectName">&ensp;&ensp;&ensp;</label>
             </div>
             <div className="item">
                 <label htmlFor="worth">合同金额：</label>
-                <input id="worth" onChange={this.handleWorth}></input>
+                <input id="worth" onChange={(e)=>this.handleInputData(e,"newWorth")}></input>
                 <label htmlFor="worth">&ensp;万</label>
             </div>
             <div className="item">
                 <label htmlFor="dayNum">计算工期：</label>
-                <input id="dayNum" onChange={this.handleDaynum}></input>
+                <input id="dayNum" onChange={(e)=>this.handleInputData(e,"newDayNum")}></input>
                 <label htmlFor="dayNum">&ensp;天</label>
             </div>
             <div className="item">
                 <label htmlFor="presonNum">人员投入：</label>
-                <input id="presonNum" onChange={this.handlePresonNum}></input>
+                <input id="presonNum" onChange={(e)=>this.handleInputData(e,"newPresonNum")}></input>
                 <label htmlFor="presonNum">&ensp;人</label>
             </div>
             <div className="item">
                 <label htmlFor="basScale">难度系数：</label>
-                <input id="basScale" onChange={this.handleBaseScale} disabled="disabled"></input>
+                <input id="baseScale" onChange={(e)=>this.handleInputData(e,"newBaseScale")} disabled="disabled"></input>
                 <label htmlFor="basScale">&ensp;&ensp;</label>
             </div>
             <button onClick={this.postNewInfo}>提交</button> 
