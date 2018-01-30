@@ -17,29 +17,40 @@ button {
   margin: 0 10px;
 }
 .create .createItem {
+  position: absolute;
+  top: calc(50% - 20px);
+  transform: translateY(-50%);
   padding: 10px;
   text-align: center;
 }
+.create .createItem .cancle {
+  font-size: 50px;
+  text-align: right;
+  font-weight: bolder;
+  margin-bottom: -30px;
+  color: red;
+}
 .create .createItem .item {
-  margin: 30px 0;
-  font-size: 20px;
-  height: 40px;
-  line-height: 40px;
+  margin-top: 30px;
+  font-size: 18px;
 }
 .create .createItem .item input {
   height: 30px;
-  line-height: 30px;
   width: 160px;
   border: solid 2px lightgrey;
+  border-radius: 5px;
   font-size: inherit;
+  text-align: center;
 }
 .create .createItem .item label {
   text-decoration: none;
 }
-.create .createItem .item #basScale {
-  border: 0;
-  border-bottom: 2px solid lightgrey;
-  color: lightseagreen;
-  font-style: italic;
-  font-weight: bolder;
+.create .createItem .result {
+  font-size: 16px;
+}
+.create .createItem .result section {
+  margin: 6px 0;
+}
+.create .createItem button {
+  margin: 0 5px;
 }

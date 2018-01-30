@@ -5,32 +5,45 @@
     width:calc(~"100% - 20px");
     margin:0 10px;
     .createItem{
-        // border: 1px solid @border-color;
+        position: absolute;
+        top:calc(~"50% - 20px");
+        transform: translateY(-50%);
         padding:10px;
         text-align: center;
 
+        .cancle{
+            font-size: 50px;
+            text-align: right;
+            font-weight: bolder;
+            // transform: translateY(30px);
+            margin-bottom:-30px;
+            color:@close-color;
+        }
+
         .item{
-            margin: 30px 0;
-            font-size: 20px;
-            height: 40px;
-            line-height: 40px;
+            margin-top: 30px;
+            font-size: 18px;
             input{
                 height: 30px;
-                line-height: 30px;
                 width:160px;
                 border: solid 2px @border-color;
+                border-radius: 5px;
                 font-size: inherit;
+                text-align: center;
             }
             label{
                 text-decoration: none;
             }
-            #basScale{
-                border: 0;
-                border-bottom: 2px solid @border-color;
-                color:@font-em-color;
-                font-style: italic;
-                font-weight: bolder;
-            }
+           
+        }
+        .result{
+            font-size:16px;
+            section{
+               margin: 6px 0;
+           }
+        }
+        button{
+            margin: 0 5px;
         }
     }
 }

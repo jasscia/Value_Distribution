@@ -9,8 +9,11 @@ class Project extends Component{
         super(props);
         
         this.state={
-            projectInfoList:[]
+            projectInfoList:[],
+            ifShowCreatePage:false,
+            activeItemInfo:''
         };
+        this.handleCreatePage=this.handleCreatePage.bind(this);
     };
     componentDidMount(){
         let url="http://qq.kkiqq.cn/api/project",
@@ -23,32 +26,49 @@ class Project extends Component{
                 });
             });
     };
-    
+    handleCreatePage(itemInfo){
+        this.setState({
+            ifShowCreatePage:!this.state.ifShowCreatePage
+        });
+        if(itemInfo){
+            this.setState({
+                activeItemInfo:itemInfo
+            })
+        }
+    }
     render(){
-        return (
-            <div className="projectInfo">
-                <input className="search" placeholder="按项目名称搜索"></input>
-                <div className="create">                    
-                    <CreatePro />
-                    <span>创建新项目</span>
-                </div>
-                <ProjectInfoList data={this.state.projectInfoList}/>
-            </div>)
+        if (this.state.ifShowCreatePage){
+            return (
+                <div className="projectInfo">
+                    <div className="create">                    
+                        <CreatePro data={this.state.activeItemInfo} handleCreatePage={this.handleCreatePage}/>
+                    </div>
+                </div>)
+        }else{
+            return (
+                <div className="projectInfo">
+                    <input className="search" placeholder="按项目名称搜索"></input>
+                    <div className="create">  
+                        <span onClick={()=>this.handleCreatePage()}>创建新项目</span>
+                    </div>
+                    <ProjectInfoList data={this.state.projectInfoList} handleCreatePage={this.handleCreatePage}/>
+                </div>)
+            }
     }
 }
 function ProjectInfoList(props){
 
     const list=props.data.map((item)=>
-        <ProjectInfoItem data={item} key={item.id} />
+        <ProjectInfoItem itemInfo={item} key={item.id} handleCreatePage={props.handleCreatePage}/>
     );
     return list;
 }
 function ProjectInfoItem(props){
-    let data=props.data;
+    let data=props.itemInfo;
     const element=<section className="projectInfoItem">                   
                     <section className="projectName">
                         <strong className="proName">{data.project_name}</strong>
-                        <span className="edit">more>></span>
+                        <span className="edit" onClick={()=>props.handleCreatePage(data)}>more>></span>
                     </section>
                     <section className="projectBaseInfo"> 
                         <div className="projectWorth">合同额：$<em>{data.worth}</em>&ensp;万</div>
