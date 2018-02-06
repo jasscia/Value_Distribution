@@ -12,9 +12,12 @@ class  CreatePro extends Component{
             newPersonNum:4,
             newDayNum:3,
             newDetail:[
-                {leader:'Jabo'},
-                {main:['张三','李四','王五','赵六']},
-                {side:['jassy','jack','rose','qurry','lily','alise','black','carl']}
+                {name:'zhangsan',value:0.55,rol:'leader'},
+                {name:'LIS',value:0.15,rol:''},
+                {name:'赵六',value:0.15,rol:''},
+                {name:'王五',value:0.15,rol:''},
+                {name:'张三',value:0.15,rol:''},
+                {name:'李四',value:0.15,rol:''}
                 ],
 
             baseUnitWorth:2.5
@@ -111,13 +114,13 @@ class  CreatePro extends Component{
                         onChange={(e)=>this.handleInputData(e,"newDayNum")}/>
                 <label htmlFor="dayNum">&ensp;天</label>
             </div>
-            <div className="item">
+            {/* <div className="item">
                 <label htmlFor="personNum">人员投入：</label>
                 <input id="personNum"  type="number"
                         value={this.state.newPersonNum} 
                         onChange={(e)=>this.handleInputData(e,"newPersonNum")}/>
                 <label htmlFor="personNum">&ensp;人</label>
-            </div>
+            </div> */}
             <div className="result">
                 <section>产值基数：
                     <em>{formateNumber(this.state.baseUnitWorth,2)}</em>

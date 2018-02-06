@@ -69,6 +69,20 @@ function ProjectInfoList(props){
 }
 function ProjectInfoItem(props){
     let data=props.itemInfo;
+    let presonLeader=[];
+    let presonList=[];
+    data.detail.map(item=>{
+        if(item.value&&!item.rol){
+           presonList.push(<em key={item.name}  className="presonName">
+                    {item.name}:{item.value}
+                </em>)
+        }else if(item.rol){
+            presonLeader.push(<em key={item.name}  className="presonName">
+            {item.name}:{item.value}
+        </em>)
+        }
+        return presonList?presonList:presonLeader;
+    });
     const element=<section className="projectInfoItem">                   
                     <section className="projectName">
                         <strong className="proName">{data.project_name}</strong>
@@ -79,9 +93,8 @@ function ProjectInfoItem(props){
                         <div className="projectDays">工期：<em>{data.day_num}</em>&ensp;天</div>
                     </section>
                     <section className="projectPreson">
-                        <div className="preson leader">负责人：<em className="presonName">{data.detail[0].leader}</em></div>
-                        <div className="preson main">主要参与：<em className="presonName">{data.detail[1].main.join(',')}</em></div>
-                        <div className="preson side">辅助：<em className="presonName">{data.detail[2].side.join(',')}</em></div>
+                        <div className="preson leader">负责人：<em className="presonName">{data.detail[0].name}:{data.detail[0].value}</em></div>
+                        <div className="preson main">参与人员：{presonList}</div>
                     </section>
                 </section>
     return  element   
