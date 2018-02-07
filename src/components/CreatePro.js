@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CreatePro.less';
 import {xhr,formateNumber} from './util.js';
+import Detail from './Detail.js'
 
 class  CreatePro extends Component{
     constructor(props){
@@ -20,12 +21,14 @@ class  CreatePro extends Component{
                 {name:'李四',value:0.15,rol:''}
                 ],
 
-            baseUnitWorth:2.5
+            baseUnitWorth:2.5,
+            ifShowDetail:false
         };
         this.updateProInfo=this.updateProInfo.bind(this);
         this.delItem=this.delItem.bind(this);
         this.cancleCreate=this.cancleCreate.bind(this);
         this.handleInputData=this.handleInputData.bind(this);
+        this.handleShowDetial=this.handleShowDetial.bind(this);
     };
     componentDidMount(){
         //初始化表单内容
@@ -87,7 +90,13 @@ class  CreatePro extends Component{
         this.setState({
             [handleObj]:e.target.value
         });
+        console.log(e.target.value);
     };
+    handleShowDetial(e){
+        this.setState({
+            ifShowDetail:!this.state.ifShowDetail
+        })
+    }
     
     render(){
         return(
@@ -114,13 +123,7 @@ class  CreatePro extends Component{
                         onChange={(e)=>this.handleInputData(e,"newDayNum")}/>
                 <label htmlFor="dayNum">&ensp;天</label>
             </div>
-            {/* <div className="item">
-                <label htmlFor="personNum">人员投入：</label>
-                <input id="personNum"  type="number"
-                        value={this.state.newPersonNum} 
-                        onChange={(e)=>this.handleInputData(e,"newPersonNum")}/>
-                <label htmlFor="personNum">&ensp;人</label>
-            </div> */}
+            
             <div className="result">
                 <section>产值基数：
                     <em>{formateNumber(this.state.baseUnitWorth,2)}</em>
@@ -131,6 +134,10 @@ class  CreatePro extends Component{
                 <section>难度系数：
                     <em>{formateNumber(this.state.baseUnitWorth/(this.state.newWorth/this.state.newDayNum/this.state.newPersonNum),2)}</em>
                 </section>
+            </div>
+            <div className="detail"> 
+                <Detail presonList={this.state.newDetail} ifShowDetail ={this.state.ifShowDetail}></Detail>
+                <div onClick={this.handleShowDetial}>{this.state.ifShowDetail?"收起产值分配列表":"展开产值分配列表"}</div>
             </div>
             <button onClick={this.updateProInfo}>提交</button>            
             <button onClick={this.delItem}>删除</button>
