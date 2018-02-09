@@ -17,7 +17,6 @@ class DeliverWorth  extends Component{
         data=null;
         xhr(method,url,data)
         .then((res)=>{
-            console.log(res);
             this.setState({
                 userList:res.data
             });

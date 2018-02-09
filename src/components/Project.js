@@ -94,7 +94,7 @@ function ProjectInfoItem(props){
                         <div className="projectDays">工期：<em>{data.day_num}</em>&ensp;天</div>
                     </section>
                     <section className="projectPreson">
-                        <div className="preson leader">负责人：<em className="presonName">{data.detail[0].name}:{data.detail[0].value}</em></div>
+                        <div className="preson leader">负责人：{presonLeader}</div>
                         <div className="preson main">参与人员：{presonList}</div>
                     </section>
                 </section>

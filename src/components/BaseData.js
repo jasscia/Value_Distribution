@@ -90,7 +90,7 @@ class BaseData extends Component{
             <div className="item">
                 <label>单位产值:$&ensp;</label>
                 <strong><em>{formateNumber(this.state.baseUnitWorth,4)}</em></strong>
-                <label>&ensp;万</label>
+                <label>&ensp;万/人/天</label>
             </div>
             <button onClick={this.putBaseData}>提交修改</button>
         </fieldset>)
