@@ -7,7 +7,7 @@ import DeliverWorth from './DeliverWorth';
 class Myapp extends Component{
     constructor(props){
         super(props);
-        this.state={activeBar:"project"};
+        this.state={activeBar:"deliverWorth"};
 
         this.ToBaseData=this.ToBaseData.bind(this);
         this.ToProject=this.ToProject.bind(this);
@@ -34,7 +34,7 @@ class Myapp extends Component{
             <nav className="tabBar">
                 <div className={this.state.activeBar==='baseData'?'bar active':'bar'} onClick={this.ToBaseData}>基数</div>
                 <div className={this.state.activeBar==='project'?'bar active':'bar'} onClick={this.ToProject}>项目信息</div>
-                <div className={this.state.activeBar==='deliverWorth'?'bar active':'bar'} onClick={this.ToDeliverWorth}>产值分配</div>                
+                <div className={this.state.activeBar==='deliverWorth'?'bar active':'bar'} onClick={this.ToDeliverWorth}>人员产值</div>                
             </nav>
         </div>)
     }

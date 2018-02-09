@@ -27,6 +27,12 @@ button {
   font-size: 16px;
   text-align: center;
 }
+.projectInfo .createBtn {
+  font-size: 14px;
+  text-align: center;
+  width: calc(100% - 20px);
+  margin: 0 10px;
+}
 .projectInfo .projectInfoItem {
   border-bottom: 3px solid lightgrey;
   padding: 5px 10px;

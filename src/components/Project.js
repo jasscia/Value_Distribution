@@ -41,23 +41,24 @@ class Project extends Component{
         this.updateProList();
     }
     render(){
+        let content;
+
         if (this.state.ifShowCreatePage){
-            return (
-                <div className="projectInfo">
-                    <div className="create">                    
-                        <CreatePro data={this.state.activeItemInfo} handleCreatePage={this.handleCreatePage}/>
-                    </div>
-                </div>)
-        }else{
-            return (
+            content=
+            <div className="projectInfo">
+                <CreatePro itemInfo={this.state.activeItemInfo} handleCreatePage={this.handleCreatePage}/>
+            </div>               
+        }else{content=
                 <div className="projectInfo">
                     <input className="search" placeholder="按项目名称搜索"></input>
-                    <div className="create">  
+                    <div className="createBtn">  
                         <span onClick={()=>this.handleCreatePage()}>创建新项目</span>
                     </div>
                     <ProjectInfoList data={this.state.projectInfoList} handleCreatePage={this.handleCreatePage}/>
-                </div>)
+                </div>
             }
+        
+        return content
     }
 }
 function ProjectInfoList(props){

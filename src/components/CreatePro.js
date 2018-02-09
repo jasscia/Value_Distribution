@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
 import './CreatePro.less';
 import {xhr,formateNumber} from './util.js';
-import Detail from './Detail.js'
+// import Detail from './Detail.js'
 
 class  CreatePro extends Component{
     constructor(props){
         super(props);
         
         this.state={
-            newProjectName:'山西引黄衬砌检测',
-            newWorth:12,
-            newPersonNum:4,
-            newDayNum:3,
-            newDetail:[
-                {name:'zhangsan',value:0.55,rol:'leader'},
-                {name:'LIS',value:0.15,rol:''},
-                {name:'赵六',value:0.15,rol:''},
-                {name:'王五',value:0.15,rol:''},
-                {name:'张三',value:0.15,rol:''},
-                {name:'李四',value:0.15,rol:''}
-                ],
+            newProjectName:'',
+            newWorth:NaN,
+            newDayNum:NaN,
+            newDetail:[],
 
-            baseUnitWorth:2.5,
+            baseUnitWorth:NaN,
             ifShowDetail:false
         };
         this.updateProInfo=this.updateProInfo.bind(this);
@@ -29,20 +21,20 @@ class  CreatePro extends Component{
         this.cancleCreate=this.cancleCreate.bind(this);
         this.handleInputData=this.handleInputData.bind(this);
         this.handleShowDetial=this.handleShowDetial.bind(this);
+        this.handleDetail=this.handleDetail.bind(this);
     };
     componentDidMount(){
         //初始化表单内容
-        if(this.props.data){
-            let itemInfo=this.props.data;
-            this.setState({
-                newProjectName:itemInfo.project_name,
-                newWorth:itemInfo.worth,
-                newPersonNum:itemInfo.person_num,
-                newDayNum:itemInfo.day_num,
-                newDetail:itemInfo.detail,
-    
-                baseUnitWorth:2.5
-            });
+        if(this.props.itemInfo){
+            let itemInfo=this.props.itemInfo;
+            if(itemInfo){
+                this.setState({
+                    newProjectName:itemInfo.project_name,
+                    newWorth:itemInfo.worth,
+                    newDayNum:itemInfo.day_num,
+                    newDetail:itemInfo.detail,
+                });
+            }
         }
         //获取 产值基数
         let url='http://qq.kkiqq.cn/api/baseworth',
@@ -62,9 +54,8 @@ class  CreatePro extends Component{
         let data={
             project_name:this.state.newProjectName,
             worth:this.state.newWorth,
-            person_num:this.state.newPersonNum,
             day_num:this.state.newDayNum,
-            base_scale:this.state.baseUnitWorth/(this.state.newWorth/this.state.newDayNum/this.state.newPersonNum),
+            base_scale:this.state.baseUnitWorth/(this.state.newWorth/this.state.newDayNum/this.state.newDetail.length),
             detail:this.state.newDetail
         };
         xhr(method,url,JSON.stringify(data))
@@ -96,54 +87,103 @@ class  CreatePro extends Component{
         this.setState({
             ifShowDetail:!this.state.ifShowDetail
         })
+    };
+    handleDetail(e){
+
     }
     
     render(){
         return(
-            <div className="createItem" >
-            <div className="cancle" onClick={this.cancleCreate}>×</div>
-            <div className="item">
-                <label htmlFor="projectName">项目名称：</label>
-                <input id="projectName" type="text"
-                        value={this.state.newProjectName} 
-                        onChange={(e)=>this.handleInputData(e,"newProjectName")}/>
-                <label htmlFor="projectName">&ensp;&ensp;&ensp;</label>
+            <div className="createWapper"> 
+                <div className="createBar" onClick={this.handleShowDetial}>
+                    <section className="handleProInfo">项目信息</section>
+                    <section className="handleDetail">产值分配</section>
+                </div>
+                <div className="createInfo" >
+                    <ProInfo proInfo={this.state} 
+                            eventHandler={this.handleInputData} 
+                            ifShowDetail ={this.state.ifShowDetail}>
+                    </ProInfo>
+                    <Detail presonList={this.state.newDetail} 
+                            ifShowDetail ={this.state.ifShowDetail}>
+                    </Detail>
+                    <button onClick={this.updateProInfo}>提交</button>            
+                    <button onClick={this.delItem}>删除</button>
+                </div>
             </div>
-            <div className="item">
-                <label htmlFor="worth">合同金额：</label>
-                <input id="worth"  type="number"
-                        value={this.state.newWorth} 
-                        onChange={(e)=>this.handleInputData(e,"newWorth")}/>
-                <label htmlFor="worth">&ensp;万</label>
-            </div>
-            <div className="item">
-                <label htmlFor="dayNum">计算工期：</label>
-                <input id="dayNum" type="number"
-                        value={this.state.newDayNum} 
-                        onChange={(e)=>this.handleInputData(e,"newDayNum")}/>
-                <label htmlFor="dayNum">&ensp;天</label>
-            </div>
-            
-            <div className="result">
-                <section>产值基数：
-                    <em>{formateNumber(this.state.baseUnitWorth,2)}</em>
-                </section>
-                <section>单位产值：
-                    <em>{formateNumber(this.state.newWorth/this.state.newDayNum/this.state.newPersonNum,2)}</em>
-                </section>
-                <section>难度系数：
-                    <em>{formateNumber(this.state.baseUnitWorth/(this.state.newWorth/this.state.newDayNum/this.state.newPersonNum),2)}</em>
-                </section>
-            </div>
-            <div className="detail"> 
-                <Detail presonList={this.state.newDetail} ifShowDetail ={this.state.ifShowDetail}></Detail>
-                <div onClick={this.handleShowDetial}>{this.state.ifShowDetail?"收起产值分配列表":"展开产值分配列表"}</div>
-            </div>
-            <button onClick={this.updateProInfo}>提交</button>            
-            <button onClick={this.delItem}>删除</button>
-        </div>
         );
     }
 };
+
+function ProInfo(props){
+    let proInfo=props.proInfo;
+    let eventHandler=props.eventHandler;
+    let ifShowDetail=props.ifShowDetail;
+
+    let proWorth=proInfo.newWorth;
+    let dayNum=proInfo.newDayNum;
+    let personNum=proInfo.newDetail.length;
+    let proUnitWorth=proWorth/dayNum/personNum;
+    let baseUnitWorth=proInfo.baseUnitWorth;
+    
+    let Element=  
+        <div className= {'proInfo '+(ifShowDetail?'hidden':'show')} >  
+            <div className="item">
+                    <label htmlFor="projectName">项目名称：</label>
+                    <input id="projectName" type="text"
+                            value={proInfo.newProjectName} 
+                            onChange={(e)=>eventHandler(e,"newProjectName")}/>
+                    <label htmlFor="projectName">&ensp;&ensp;&ensp;</label>
+                </div>
+                <div className="item">
+                    <label htmlFor="worth">合同金额：</label>
+                    <input id="worth"  type="number"
+                            value={proInfo.newWorth} 
+                            onChange={(e)=>eventHandler(e,"newWorth")}/>
+                    <label htmlFor="worth">&ensp;万</label>
+                </div>
+                <div className="item">
+                    <label htmlFor="dayNum">计算工期：</label>
+                    <input id="dayNum" type="number"
+                            value={proInfo.newDayNum} 
+                            onChange={(e)=>eventHandler(e,"newDayNum")}/>
+                    <label htmlFor="dayNum">&ensp;天</label>
+                </div>
+                
+                <div className="result">
+                    <section>产值基数：
+                        <em>{formateNumber(baseUnitWorth,2)}</em>
+                        &ensp;万元/人/天
+                    </section>
+                    <section>单位产值：
+                        <em>{formateNumber(proUnitWorth,2)}</em>
+                        &ensp;万元/人/天
+                    </section>
+                    <section>参与人数：
+                        <em>{personNum}</em>
+                        &ensp;人
+                    </section>
+                    <section>难度系数：
+                        <em>{formateNumber(baseUnitWorth/proUnitWorth,2)}</em>
+                    </section>
+                </div>
+        </div>
+    
+    return Element
+}
+function Detail(props){
+    let presonList=props.presonList;
+    let ifShowDetail=props.ifShowDetail;
+    let element=  presonList.map(preson=>{
+        return <div key={preson.name} className="list">
+                <label htmlFor={preson.name}>{preson.name}</label>
+                <input id={preson.name}/>
+                <input type="checkbox" />
+              </div>
+      })
+    return  <div  className= {'detail '+(ifShowDetail?'show':'hidden')}>
+                {element}
+            </div>
+}
 
 export default CreatePro;
