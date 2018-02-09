@@ -1,0 +1,30 @@
+em {
+  color: lightseagreen;
+}
+button {
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  letter-spacing: 5px;
+  background: lightgreen;
+}
+.deliverWorth {
+  color: #000;
+}
+.deliverWorth .worthList {
+  height: 25px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.deliverWorth .editPersonBtn {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+.deliverWorth .personList .item {
+  height: 25px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
