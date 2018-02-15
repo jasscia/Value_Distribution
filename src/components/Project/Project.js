@@ -31,13 +31,9 @@ class Project extends Component{
     }
     handleCreatePage(itemInfo){
         this.setState({
-            ifShowCreatePage:!this.state.ifShowCreatePage
+            ifShowCreatePage:!this.state.ifShowCreatePage,
+            activeItemInfo:itemInfo?itemInfo:''
         });
-        // if(itemInfo){
-            this.setState({
-                activeItemInfo:itemInfo?itemInfo:''
-            })
-        // };
         this.updateProList();
     }
     render(){

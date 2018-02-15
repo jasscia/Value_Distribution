@@ -24,3 +24,16 @@ export function xhr(method,url,data){
 export function formateNumber(number,fixed){
   return number.toFixed(fixed)
 }
+export function throttle(handleFn,delay){
+  console.log('进入 节流 函数');
+  var timer=null;
+  return function(){
+    console.log('进入 回调函数，参数是：',arguments)
+    var context=this;
+    var args=arguments;
+    clearTimeout(timer);
+    timer=setTimeout(function(){
+      handleFn.apply(context,args);
+    },delay)
+  }
+}
