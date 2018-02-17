@@ -43,7 +43,6 @@ class BaseData extends Component{
                     <strong><em>{formateNumber(this.props.baseData.baseUnitWorth,4)}</em></strong>
                     <label>&ensp;万/人/天</label>
                 </div>
-                {/* <button onClick={()=>this.props.putBaseData()}>提交修改</button> */}
             </fieldset>
     }
 }

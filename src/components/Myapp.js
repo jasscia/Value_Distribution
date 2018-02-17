@@ -9,7 +9,7 @@ import {xhr} from './util.js';
 class Myapp extends Component{
     constructor(props){
         super(props);
-        this.state={activeBar:"baseData",
+        this.state={activeBar:"deliverWorth",
                     userList:'',
                     baseData:{id:0,
                                 baseDays:250,
@@ -24,16 +24,7 @@ class Myapp extends Component{
 
     };
     componentDidMount(){
-        let url_user='http://qq.kkiqq.cn/api/userlist',
-            method='GET',
-            data=null;
-            xhr(method,url_user,data)
-            .then((res)=>{
-                this.setState({
-                    userList:res.data
-                });
-                console.log('baseData请求结果为',res.data);
-            });
+        this.updataUserList();
         let url_baseData='http://qq.kkiqq.cn/api/baseworth',
             method_baseData='GET',
             data_baseData=null;
@@ -65,22 +56,53 @@ class Myapp extends Component{
         });
     };
     //userList的处理
-    handleUserList(userList){
-        this.setState({
-            userList:userList
+    updataUserList(){
+        let url='http://qq.kkiqq.cn/api/userlist',
+            method='GET',
+            data=null;
+            xhr(method,url,data)
+            .then((res)=>{
+                this.setState({
+                    userList:res.data
+                });
+                console.log('baseData请求结果为',res.data);
+            });
+    };
+    postUserList(userName){  
+        let url="http://qq.kkiqq.cn/api/userlist";
+        let method='POST';
+        let data={name:userName};
+        xhr(method,url,JSON.stringify(data))
+        .then((res)=>{
+            console.log('新增成功',res);
+            // this.updataUserList();
         })
     };
-    putUserList(userList,method){
-        console.log(userList,method)
+    deleteUserList(id){  
+        let url="http://qq.kkiqq.cn/api/userlist/"+id;
+        let method='DELETE';
+        let data={};
+        xhr(method,url,JSON.stringify(data))
+        .then((res)=>{
+            console.log('删除成功',res);
+        });
     }
     render(){
         let content;
         if (this.state.activeBar==="baseData") {
-            content=<BaseData baseData={this.state.baseData} putBaseData={this.putBaseData} handleBaseData={this.handleBaseData}/>
+            content=<BaseData 
+                    baseData={this.state.baseData} 
+                    putBaseData={this.putBaseData} 
+                    handleBaseData={this.handleBaseData}/>
         }else if(this.state.activeBar==="project") {
             content=<Project baseData={this.state.baseData} userList={this.userList}/>
         }else if(this.state.activeBar==="deliverWorth") {
-            content=<DeliverWorth userList={this.state.userList} putUserList={this.putUserList} handleUserList={this.handleUserList}/>
+            content=<DeliverWorth 
+                    userList={this.state.userList} 
+                    postUserList={this.postUserList} 
+                    deleteUserList={this.deleteUserList}
+                    // handleUserList={this.handleUserList}
+                    />
         }
         return (<div className="myApp" >
             <div className="content">
