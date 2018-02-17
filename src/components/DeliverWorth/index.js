@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import {xhr} from '../util.js';
-import './DeliverWorth.less';
+import './index.less';
 import {PersonList,PersonListWithWorth} from './DeliverWorth';
 
 class DeliverWorth  extends Component{
@@ -28,9 +27,7 @@ class DeliverWorth  extends Component{
                     </PersonListWithWorth>
                     :<PersonList 
                         userList={this.props.userList}
-                        postUserList={this.props.postUserList}
-                        deleteUserList={this.props.deleteUserList}
-                        // handleUserList={this.props.handleUserList}
+                        handleUserList={this.props.handleUserList}
                         >
                     </PersonList>
                 }

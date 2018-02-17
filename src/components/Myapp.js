@@ -4,7 +4,9 @@ import BaseData from './BaseData/';
 import Project from './Project/';
 import DeliverWorth from './DeliverWorth/';
 
-import {xhr} from './util.js';
+import {updataUserList,postUserList,deleteUserList} from '../services/userListServices';
+import {updataBaseData,putBaseData} from '../services/baseDataServices';
+import {updataProjectList,postProjectListList,deleteProjectListList,getProjectItem,putProjectListItem} from '../services/projectServices';
 
 class Myapp extends Component{
     constructor(props){
@@ -20,88 +22,59 @@ class Myapp extends Component{
 
         this.handleActiveBar=this.handleActiveBar.bind(this);
         this.handleBaseData=this.handleBaseData.bind(this);
-        this.putBaseData=this.putBaseData.bind(this);
+        this.handleUserList=this.handleUserList.bind(this);
 
     };
     componentDidMount(){
-        this.updataUserList();
-        let url_baseData='http://qq.kkiqq.cn/api/baseworth',
-            method_baseData='GET',
-            data_baseData=null;
-            xhr(method_baseData,url_baseData,data_baseData)
-            .then((res)=>{
-                this.setState({
-                    baseData:res.data[0]
-                });
-            });       
+        // let userList= updataUserList();
+        // let baseData= updataBaseData();
+        updataUserList().then((userList)=>{
+            this.setState({
+                userList:userList
+            })
+            console.log('更新后userlist是:',this.state.userList,userList)  
+        });
+        updataBaseData().then((baseData)=>{
+            this.setState({
+                baseData:baseData
+            })
+        })  
     }
     
     handleActiveBar(activeBar){
         this.setState({activeBar:activeBar})
     };
-    //baseData的处理
-    //set state
-    handleBaseData(baseData){
+   async handleUserList(method,id,data){
+        if(method==="DELETE"){
+          await  deleteUserList(id);
+        }
+        if(method==="POST"){
+          await  postUserList(data);
+        }
         this.setState({
-            baseData:baseData
+            userList:await updataUserList()
         })
-    };
-    putBaseData(baseData){   
-        let url="http://qq.kkiqq.cn/api/baseworth/1";
-        let method='PUT';
-        let data=baseData;
-        xhr(method,url,JSON.stringify(data))
-        .then((res)=>{
-            console.log('新增baseData成功',res);
-        });
-    };
-    //userList的处理
-    updataUserList(){
-        let url='http://qq.kkiqq.cn/api/userlist',
-            method='GET',
-            data=null;
-            xhr(method,url,data)
-            .then((res)=>{
-                this.setState({
-                    userList:res.data
-                });
-                console.log('baseData请求结果为',res.data);
-            });
-    };
-    postUserList(userName){  
-        let url="http://qq.kkiqq.cn/api/userlist";
-        let method='POST';
-        let data={name:userName};
-        xhr(method,url,JSON.stringify(data))
-        .then((res)=>{
-            console.log('新增成功',res);
-            // this.updataUserList();
-        })
-    };
-    deleteUserList(id){  
-        let url="http://qq.kkiqq.cn/api/userlist/"+id;
-        let method='DELETE';
-        let data={};
-        xhr(method,url,JSON.stringify(data))
-        .then((res)=>{
-            console.log('删除成功',res);
-        });
     }
+    async handleBaseData(method,data){
+        if(method==="PUT"){
+           await putBaseData(data)
+        }
+        this.setState({
+            baseData:await updataBaseData()
+        })
+    };  
     render(){
         let content;
         if (this.state.activeBar==="baseData") {
             content=<BaseData 
                     baseData={this.state.baseData} 
-                    putBaseData={this.putBaseData} 
                     handleBaseData={this.handleBaseData}/>
         }else if(this.state.activeBar==="project") {
             content=<Project baseData={this.state.baseData} userList={this.userList}/>
         }else if(this.state.activeBar==="deliverWorth") {
             content=<DeliverWorth 
                     userList={this.state.userList} 
-                    postUserList={this.postUserList} 
-                    deleteUserList={this.deleteUserList}
-                    // handleUserList={this.handleUserList}
+                    handleUserList={this.handleUserList}
                     />
         }
         return (<div className="myApp" >

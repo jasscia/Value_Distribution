@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './BaseData.less';
-import {formateNumber,throttle} from '../util'
+import './index.less';
+import {formateNumber} from '../../services/util.js';
 class BaseData extends Component{
     constructor(props){
         super(props);
@@ -12,10 +12,10 @@ class BaseData extends Component{
                         basePerson:(target==='basePerson')?e.target.value:this.props.baseData.basePerson,
                         baseDays:(target==='baseDays')?e.target.value:this.props.baseData.baseDays};
         baseData.baseUnitWorth=baseData.baseWorth/baseData.baseDays/baseData.basePerson;
-        this.props.handleBaseData(baseData); 
-        this.props.putBaseData(baseData); //这里想改写成节流函数 应该如何操作呢
+        this.props.handleBaseData('PUT',baseData); 
     }
     render(){
+        console.log('参数是',this.props);
         return <fieldset className="baseData">
                 <div className="item">
                     <label>总产值:&ensp;$</label>

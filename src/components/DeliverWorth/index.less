@@ -1,20 +1,40 @@
-@import '../util.less';
+@import '../util/util.less';
 .deliverWorth{
   color:@font-color;
-  .worthList{
-    height: 25px;
-    margin-bottom: 10px;
-    font-size:18px;
+  margin:20px 20px;
+  .personListWithWorth{
+    .item{
+      line-height: 30px;
+      margin: 15px 0;
+      font-size:20px;
+      display: flex;
+      width:100%;
+      justify-content: space-between;
+      .personName{
+        flex:1;
+      }
+      .more{
+        font-size: 24px;
+        border:none;
+        padding:0;
+        background: initial;
+        color:@border-color;
+        text-align: center;
+        line-height:30px;
+      }
+    }
   }
   .editPersonBtn{
-    height:60px;
+    height:40px;
     width:60px;
     border-radius: 50%;
+    padding:0;
+    border:none;
   }
   .personList{
     .item,.newItem{
       line-height: 30px;
-      margin-bottom: 15px;
+      margin: 15px 0;
       font-size:20px;
       display: flex;
       width:100%;
@@ -23,7 +43,7 @@
         flex:1;
       }
       .delete,.add{
-        width:60px;
+        // width:60px;
         margin-left:30px;
         font-size: 24px;
       }

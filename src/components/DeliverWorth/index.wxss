@@ -12,21 +12,39 @@ button {
 }
 .deliverWorth {
   color: #000;
+  margin: 20px 20px;
 }
-.deliverWorth .worthList {
-  height: 25px;
-  margin-bottom: 10px;
-  font-size: 18px;
+.deliverWorth .personListWithWorth .item {
+  line-height: 30px;
+  margin: 15px 0;
+  font-size: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.deliverWorth .personListWithWorth .item .personName {
+  flex: 1;
+}
+.deliverWorth .personListWithWorth .item .more {
+  font-size: 24px;
+  border: none;
+  padding: 0;
+  background: initial;
+  color: lightgrey;
+  text-align: center;
+  line-height: 30px;
 }
 .deliverWorth .editPersonBtn {
-  height: 60px;
+  height: 40px;
   width: 60px;
   border-radius: 50%;
+  padding: 0;
+  border: none;
 }
 .deliverWorth .personList .item,
 .deliverWorth .personList .newItem {
   line-height: 30px;
-  margin-bottom: 15px;
+  margin: 15px 0;
   font-size: 20px;
   display: flex;
   width: 100%;
@@ -40,7 +58,6 @@ button {
 .deliverWorth .personList .newItem .delete,
 .deliverWorth .personList .item .add,
 .deliverWorth .personList .newItem .add {
-  width: 60px;
   margin-left: 30px;
   font-size: 24px;
 }

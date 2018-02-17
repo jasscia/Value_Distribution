@@ -1,10 +1,10 @@
 export function xhr(method,url,data){
   return new Promise(
-    function(resolve,reject){
-      
-      var xhr=new XMLHttpRequest();
+    function(resolve,reject){      
+      let xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){
-          try{if(xhr.readyState===4 && xhr.status===200){    
+          try{
+            if(xhr.readyState===4 && xhr.status===200){    
               resolve(JSON.parse(xhr.responseText));
           }
         }catch(error){console.log(error)}
@@ -15,11 +15,9 @@ export function xhr(method,url,data){
           "Content-Type","application/json"
         );
       }
-      xhr.send(data);
-    
+      xhr.send(data);   
   })
 };
-
 
 export function formateNumber(number,fixed){
   return number.toFixed(fixed)

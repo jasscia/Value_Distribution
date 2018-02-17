@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './CreatePro.less';
-import {xhr,formateNumber} from '../../util.js';
-// import Detail from './Detail.js'
+import {xhr,formateNumber} from '../../../services/util.js';
 
 class  CreatePro extends Component{
     constructor(props){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Project.less';
-import {xhr} from '../util.js';
+import {xhr} from '../../services/util.js';
 import CreatePro from './CreatePro';
 
 
