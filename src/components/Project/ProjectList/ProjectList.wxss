@@ -33,35 +33,35 @@ button {
   width: calc(100% - 20px);
   margin: 0 10px;
 }
-.projectInfo .projectInfoItem {
+.projectInfo .item {
   border-bottom: 3px solid lightgrey;
   padding: 5px 10px;
 }
-.projectInfo .projectInfoItem .projectName {
+.projectInfo .item .projectName {
   font-size: 18px;
   text-align: center;
   display: flex;
 }
-.projectInfo .projectInfoItem .projectName .proName {
+.projectInfo .item .projectName .proName {
   flex: 1;
 }
-.projectInfo .projectInfoItem .projectName .edit {
+.projectInfo .item .projectName .edit {
   font-size: 14px;
   color: lightseagreen;
 }
-.projectInfo .projectInfoItem .projectBaseInfo {
+.projectInfo .item .projectBaseInfo {
   display: flex;
   justify-content: space-between;
   font-size: 16px;
   padding: 3px 0;
 }
-.projectInfo .projectInfoItem .projectPreson {
+.projectInfo .item .projectPreson {
   font-size: 14px;
 }
-.projectInfo .projectInfoItem .projectPreson .preson {
+.projectInfo .item .projectPreson .preson {
   padding: 3px 0;
 }
-.projectInfo .projectInfoItem .projectPreson .presonName {
+.projectInfo .item .projectPreson .presonName {
   font-size: 12px;
   padding-right: 8px;
 }

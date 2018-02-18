@@ -32,7 +32,7 @@ fieldset {
 .baseData .item input {
   height: 30px;
   line-height: 30px;
-  width: 100px;
+  width: 150px;
   border: solid 2px lightgrey;
   text-align: center;
   font-size: inherit;

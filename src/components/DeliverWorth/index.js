@@ -8,9 +8,12 @@ class DeliverWorth  extends Component{
         this.state={
             ifshowpersonList:true,
         };
-        this.handdleEditpersonBtn=this.handdleEditpersonBtn.bind(this);
+        this.handleEditpersonBtn=this.handleEditpersonBtn.bind(this);
     }
-    handdleEditpersonBtn(e){
+    async componentDidMount(){
+        this.props.handleUserList()
+    }
+    handleEditpersonBtn(e){
         console.log(e.target.tagName);
         if(e.target.tagName==='BUTTON'){
             this.setState({
@@ -19,16 +22,14 @@ class DeliverWorth  extends Component{
         }
     }
     render(){
-        console.log('index中',this.props.userList)
-        return <div className="deliverWorth" onClick={this.handdleEditpersonBtn}>
+        return <div className="deliverWorth" onClick={this.handleEditpersonBtn}>
                 {this.state.ifshowpersonList?
                     <PersonListWithWorth 
                         userList={this.props.userList}>
                     </PersonListWithWorth>
                     :<PersonList 
                         userList={this.props.userList}
-                        handleUserList={this.props.handleUserList}
-                        >
+                        handleUserList={this.props.handleUserList}>
                     </PersonList>
                 }
             </div>

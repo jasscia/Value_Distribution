@@ -6,41 +6,24 @@ import DeliverWorth from './DeliverWorth/';
 
 import {updataUserList,postUserList,deleteUserList} from '../services/userListServices';
 import {updataBaseData,putBaseData} from '../services/baseDataServices';
-import {updataProjectList,postProjectListList,deleteProjectListList,getProjectItem,putProjectListItem} from '../services/projectServices';
+import {updataProjectList,postProjectList,deleteProjectList,getProjectItem,putProjectItem} from '../services/projectServices';
 
 class Myapp extends Component{
     constructor(props){
         super(props);
-        this.state={activeBar:"deliverWorth",
+        this.state={activeBar:"baseData",
                     userList:'',
-                    baseData:{id:0,
-                                baseDays:250,
-                                basePerson:24,
-                                baseUnitWorth:1,
-                                baseWorth:6000}
-                                };
-
+                    baseData:{},
+                    projectList:[]};
         this.handleActiveBar=this.handleActiveBar.bind(this);
         this.handleBaseData=this.handleBaseData.bind(this);
         this.handleUserList=this.handleUserList.bind(this);
-
+        this.handleProjectItem=this.handleProjectItem.bind(this);
+        this.handleProjectList=this.handleProjectList.bind(this);
     };
     componentDidMount(){
-        // let userList= updataUserList();
-        // let baseData= updataBaseData();
-        updataUserList().then((userList)=>{
-            this.setState({
-                userList:userList
-            })
-            console.log('更新后userlist是:',this.state.userList,userList)  
-        });
-        updataBaseData().then((baseData)=>{
-            this.setState({
-                baseData:baseData
-            })
-        })  
-    }
-    
+        //
+    }  
     handleActiveBar(activeBar){
         this.setState({activeBar:activeBar})
     };
@@ -62,20 +45,42 @@ class Myapp extends Component{
         this.setState({
             baseData:await updataBaseData()
         })
-    };  
+    }; 
+    async handleProjectList(method,id,data){
+        if(method==="POST"){
+            await postProjectList(data)
+        }
+        if(method==="DELETE"){
+            await deleteProjectList(id)
+        }
+        this.setState({
+            projectList:await updataProjectList()
+        })
+    } 
+    async handleProjectItem(method,id,data){
+        console.log(arguments);
+        if(method==="PUT"){
+            await putProjectItem(id,data)
+        }
+        if(method==="GET"){
+            await getProjectItem(id)
+        }
+    }
     render(){
         let content;
         if (this.state.activeBar==="baseData") {
-            content=<BaseData 
-                    baseData={this.state.baseData} 
-                    handleBaseData={this.handleBaseData}/>
+        content=<BaseData 
+                baseData={this.state.baseData} 
+                handleBaseData={this.handleBaseData}/>
         }else if(this.state.activeBar==="project") {
-            content=<Project baseData={this.state.baseData} userList={this.userList}/>
+        content=<Project 
+                projectList={this.state.projectList} 
+                handleProjectList={this.handleProjectList}
+                handleProjectItem={this.handleProjectItem}/>
         }else if(this.state.activeBar==="deliverWorth") {
-            content=<DeliverWorth 
-                    userList={this.state.userList} 
-                    handleUserList={this.handleUserList}
-                    />
+        content=<DeliverWorth 
+                userList={this.state.userList} 
+                handleUserList={this.handleUserList}/>
         }
         return (<div className="myApp" >
             <div className="content">

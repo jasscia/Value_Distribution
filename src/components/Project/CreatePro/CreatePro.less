@@ -1,94 +1,79 @@
 @import "../../util/util.less";
-.createWapper{
+
+.createInfo{
+    margin:20px;
     font-size: 14px;
     text-align: center;
-    width:calc(~"100% - 20px");
-    margin:0 10px;
-    .createBar{
+
+    .cancle{
+        font-size: 50px;
+        text-align: right;
+        font-weight: bolder;
+        margin-bottom:-30px;
+        color:@close-color;
+    }
+
+    .item{
+        margin-top: 30px;
+        font-size: 18px;
+        input{
+            height: 30px;
+            width:160px;
+            border: solid 2px @border-color;
+            border-radius: 5px;
+            font-size: inherit;
+            text-align: center;
+        }
+        label{
+            text-decoration: none;
+        }
+        
+    }
+    
+    .list{
+        margin:0;
+        padding:0;
+        height:30px;
+        width:100%;
+        font-size: 14px;
+        color: @font-color;
         display: flex;
-        background: @button-color;
-        .handleProInfo,.handleDetail{
-            flex:1;
+        justify-content: space-between;
+        transition: display 0.5s ease-in-out;
+        // padding:2px 0;
+        input{
+            border-top:none;
+            border-left:none;
+            border-right:none;
+            border-bottom: 1px solid @border-color;
+            height: 22px;
+            margin:2px 0;
+            width: 100px;
+            text-align: center;
+        }
+        label{
+            display: inline-block;    
+            height: 24px;
+            margin:3px 0;
+            width: 100px;
+            text-align: center;
         }
     }
-    .createInfo{
-        position: absolute;
-        top:calc(~"50% - 20px");
-        transform: translateY(-50%);
-        padding:10px;
-        text-align: center;
-
-        .cancle{
-            font-size: 50px;
-            text-align: right;
-            font-weight: bolder;
-            margin-bottom:-30px;
-            color:@close-color;
-        }
-
-        .item{
-            margin-top: 30px;
-            font-size: 18px;
-            input{
-                height: 30px;
-                width:160px;
-                border: solid 2px @border-color;
-                border-radius: 5px;
-                font-size: inherit;
-                text-align: center;
-            }
-            label{
-                text-decoration: none;
-            }
-           
-        }
         
-        .list{
-            margin:0;
-            padding:0;
-            height:30px;
-            width:100%;
-            font-size: 14px;
-            color: @font-color;
-            border-bottom: 2px solid @border-color;
-            display: flex;
-            justify-content: space-between;
-            transition: display 0.5s ease-in-out;
-            // padding:2px 0;
-            input{
-                border-top:none;
-                border-left:none;
-                border-right:none;
-                border-bottom: 1px solid @border-color;
-                height: 22px;
-                margin:2px 0;
-                width: 100px;
-                text-align: center;
-            }
-            label{
-                display: inline-block;    
-                height: 24px;
-                margin:3px 0;
-                width: 100px;
-                text-align: center;
-            }
+    .result{
+        font-size:16px;
+        section{
+            margin: 6px 0;
         }
-            
-        .result{
-            font-size:16px;
-            section{
-               margin: 6px 0;
-           }
-        }
-        
-        button{
-            margin: 0 5px;
-        }
-        .hidden{
-            display: none;
-        }
-        .show{
-            // display: block;
-        }
+    }
+    
+    button{
+        margin: 0 5px;
+    }
+    .hidden{
+        display: none;
+    }
+    .show{
+        // display: block;
     }
 }

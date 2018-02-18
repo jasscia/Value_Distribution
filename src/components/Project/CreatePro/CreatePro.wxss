@@ -10,39 +10,23 @@ button {
   letter-spacing: 5px;
   background: lightgreen;
 }
-.createWapper {
+.createInfo {
+  margin: 20px;
   font-size: 14px;
   text-align: center;
-  width: calc(100% - 20px);
-  margin: 0 10px;
 }
-.createWapper .createBar {
-  display: flex;
-  background: lightgreen;
-}
-.createWapper .createBar .handleProInfo,
-.createWapper .createBar .handleDetail {
-  flex: 1;
-}
-.createWapper .createInfo {
-  position: absolute;
-  top: calc(50% - 20px);
-  transform: translateY(-50%);
-  padding: 10px;
-  text-align: center;
-}
-.createWapper .createInfo .cancle {
+.createInfo .cancle {
   font-size: 50px;
   text-align: right;
   font-weight: bolder;
   margin-bottom: -30px;
   color: red;
 }
-.createWapper .createInfo .item {
+.createInfo .item {
   margin-top: 30px;
   font-size: 18px;
 }
-.createWapper .createInfo .item input {
+.createInfo .item input {
   height: 30px;
   width: 160px;
   border: solid 2px lightgrey;
@@ -50,22 +34,21 @@ button {
   font-size: inherit;
   text-align: center;
 }
-.createWapper .createInfo .item label {
+.createInfo .item label {
   text-decoration: none;
 }
-.createWapper .createInfo .list {
+.createInfo .list {
   margin: 0;
   padding: 0;
   height: 30px;
   width: 100%;
   font-size: 14px;
   color: #000;
-  border-bottom: 2px solid lightgrey;
   display: flex;
   justify-content: space-between;
   transition: display 0.5s ease-in-out;
 }
-.createWapper .createInfo .list input {
+.createInfo .list input {
   border-top: none;
   border-left: none;
   border-right: none;
@@ -75,22 +58,22 @@ button {
   width: 100px;
   text-align: center;
 }
-.createWapper .createInfo .list label {
+.createInfo .list label {
   display: inline-block;
   height: 24px;
   margin: 3px 0;
   width: 100px;
   text-align: center;
 }
-.createWapper .createInfo .result {
+.createInfo .result {
   font-size: 16px;
 }
-.createWapper .createInfo .result section {
+.createInfo .result section {
   margin: 6px 0;
 }
-.createWapper .createInfo button {
+.createInfo button {
   margin: 0 5px;
 }
-.createWapper .createInfo .hidden {
+.createInfo .hidden {
   display: none;
 }
