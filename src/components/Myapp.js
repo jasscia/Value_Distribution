@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Router, Route, hashHistory ,link} from 'react-router';
+
 import './Myapp.less';
 import BaseData from './BaseData/';
 import Project from './Project/';
@@ -11,11 +13,12 @@ import {updataProjectList,postProjectList,deleteProjectList,getProjectItem,putPr
 class Myapp extends Component{
     constructor(props){
         super(props);
-        this.state={activeBar:"baseData",
+        this.state={
+            // activeBar:"baseData",
                     userList:'',
                     baseData:{},
                     projectList:[]};
-        this.handleActiveBar=this.handleActiveBar.bind(this);
+        // this.handleActiveBar=this.handleActiveBar.bind(this);
         this.handleBaseData=this.handleBaseData.bind(this);
         this.handleUserList=this.handleUserList.bind(this);
         this.handleProjectItem=this.handleProjectItem.bind(this);
@@ -24,9 +27,9 @@ class Myapp extends Component{
     componentDidMount(){
         //
     }  
-    handleActiveBar(activeBar){
-        this.setState({activeBar:activeBar})
-    };
+    // handleActiveBar(activeBar){
+    //     this.setState({activeBar:activeBar})
+    // };
    async handleUserList(method,id,data){
         if(method==="DELETE"){
           await  deleteUserList(id);
@@ -58,7 +61,6 @@ class Myapp extends Component{
         })
     } 
     async handleProjectItem(method,id,data){
-        console.log(arguments);
         if(method==="PUT"){
             await putProjectItem(id,data)
         }
@@ -82,16 +84,28 @@ class Myapp extends Component{
                 userList={this.state.userList} 
                 handleUserList={this.handleUserList}/>
         }
-        return (<div className="myApp" >
-            <div className="content">
-                {content}
+        return <router>
+            <div className="myApp">
+                <div className="content">
+                    {content}
+                </div>
+                <nav className="tabBar">
+                    <indexLink to="/" className="bar"  activeClassName="bar active"
+                        // onClick={()=>this.handleActiveBar("baseData")}
+                        link to="/baseData">产值基数</indexLink>
+                    <link to="/project" className="bar"  activeClassName="bar active"
+                        // onClick={()=>this.handleActiveBar("project")}
+                        link to="/project">项目信息</link>
+                    <link to="/deliverWorth" className="bar" activeClassName="bar active"
+                        // onClick={()=>this.handleActiveBar("deliverWorth")}
+                        link to="/deliverWorth">人员产值</link>                
+                </nav>
+                <Route exact path="/" component={BaseData}/>
+                <Route exact path="/baseData" component={BaseData}/>
+                <Route path="/project" component={Project}/>
+                <Route path="/deliveWorth" component={DeliverWorth}/>
             </div>
-            <nav className="tabBar">
-                <div className={'bar '+(this.state.activeBar==='baseData'?'active':'')} onClick={()=>this.handleActiveBar("baseData")}>产值基数</div>
-                <div className={'bar '+(this.state.activeBar==='project'?'active':'')} onClick={()=>this.handleActiveBar("project")}>项目信息</div>
-                <div className={'bar '+(this.state.activeBar==='deliverWorth'?'active':'')} onClick={()=>this.handleActiveBar("deliverWorth")}>人员产值</div>                
-            </nav>
-        </div>)
+        </router>
     }
 }
 export default Myapp;

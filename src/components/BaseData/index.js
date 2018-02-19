@@ -48,5 +48,4 @@ class BaseData extends Component{
             </fieldset>
     }
 }
-
 export default BaseData;
