@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, hashHistory ,link} from 'react-router';
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 import './Myapp.less';
 import BaseData from './BaseData/';
@@ -90,18 +90,17 @@ class Myapp extends Component{
                     {content}
                 </div>
                 <nav className="tabBar">
-                    <indexLink to="/" className="bar"  activeClassName="bar active"
+                    <Link to="/" className="bar"  activeClassName="bar active"
                         // onClick={()=>this.handleActiveBar("baseData")}
-                        link to="/baseData">产值基数</indexLink>
-                    <link to="/project" className="bar"  activeClassName="bar active"
+                        >产值基数</Link>
+                    <Link to="/project" className="bar"  activeClassName="bar active"
                         // onClick={()=>this.handleActiveBar("project")}
-                        link to="/project">项目信息</link>
-                    <link to="/deliverWorth" className="bar" activeClassName="bar active"
+                        >项目信息</Link>
+                    <Link to="/deliverWorth" className="bar" activeClassName="bar active"
                         // onClick={()=>this.handleActiveBar("deliverWorth")}
-                        link to="/deliverWorth">人员产值</link>                
+                        >人员产值</Link>                
                 </nav>
                 <Route exact path="/" component={BaseData}/>
-                <Route exact path="/baseData" component={BaseData}/>
                 <Route path="/project" component={Project}/>
                 <Route path="/deliveWorth" component={DeliverWorth}/>
             </div>
