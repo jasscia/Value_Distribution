@@ -10,6 +10,10 @@ button {
   letter-spacing: 5px;
   background: lightgreen;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .projectInfo {
   width: 100%;
   padding: 0;
@@ -35,6 +39,7 @@ button {
 }
 .projectInfo .item {
   border-bottom: 3px solid lightgrey;
+  border-radius: 10%;
   padding: 5px 10px;
 }
 .projectInfo .item .projectName {
@@ -45,9 +50,11 @@ button {
 .projectInfo .item .projectName .proName {
   flex: 1;
 }
-.projectInfo .item .projectName .edit {
+.projectInfo .item .projectName .edit,
+.projectInfo .item .projectName .delete {
   font-size: 14px;
   color: lightseagreen;
+  margin: 0 7px;
 }
 .projectInfo .item .projectBaseInfo {
   display: flex;

@@ -15,7 +15,7 @@ export async function postProjectList(data){
   console.log('更新成功',res.data);
   return;
 }
-export async function deleteProjectList(id){
+export async function deleteProjectItem(id){
   let url="http://qq.kkiqq.cn/api/project/"+id;
   let method='DELETE';
   let data={};

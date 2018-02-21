@@ -2,8 +2,7 @@ import React,{Component} from 'react';
 import { formateNumber } from '../../../services/util.js'
 
 export class ProInfo extends Component{
-    render(){ 
-        console.log('state是',this.props.state)       
+    render(){  
     return <div className={'proInfo'} >
                 <div className="item">
                     <label htmlFor="projectName">项目名称：</label>
@@ -51,15 +50,15 @@ export class ProInfo extends Component{
 
 export class Detail extends Component{
     render(){
-        let element = this.props.state.detail.map(person => {
-            console.log(this.props.state.detail.indexOf(person));
-            return <div key={this.props.state.detail.indexOf(person.name)} className="list">
+        let element = this.props.state.detail.map((person,i) => {
+            // console.log(this.props.state.detail.indexOf(person));
+            return <div key={i} className="list">
                 <label >{person.name}</label>
                 <input value={person.value} 
-                        onChange={(e)=>this.props.handleNewItem(e,'detail',this.props.state.detail.indexOf(person),'value')}/>
+                        onChange={(e)=>this.props.handleNewItem(e,'detail',i,'value')}/>
                 <input type="radio" name="leader" 
                         checked={person.rol?true:false}  
-                        onChange={(e)=>this.props.handleNewItem(e,'detail',this.props.state.detail.indexOf(person),'rol')}/>
+                        onChange={(e)=>this.props.handleNewItem(e,'detail',i,'rol')}/>
             </div>
         })
         return <div className='detail' ref="detail">

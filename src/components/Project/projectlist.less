@@ -1,4 +1,4 @@
-@import '../../util/util.less';
+@import '../util/util.less';
 .projectInfo{ 
     width: 100%;
     padding:0;
@@ -25,7 +25,7 @@
     }
     .item{
         border-bottom:3px solid @border-color;
-        // margin:10px 0;
+        border-radius: 10%;
         padding: 5px 10px;
         // background: #efefef;
         .projectName{
@@ -35,9 +35,10 @@
             .proName{
                 flex:1;
             }
-            .edit{
+            .edit,.delete{
                 font-size: 14px;
                 color:@font-em-color;
+                margin:0 7px;
             }
         }
         .projectBaseInfo{  

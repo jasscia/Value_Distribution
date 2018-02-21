@@ -10,9 +10,13 @@ button {
   letter-spacing: 5px;
   background: lightgreen;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .deliverWorth {
   color: #000;
-  margin: 20px 20px;
+  margin: 20px 20px 80px;
 }
 .deliverWorth .personListWithWorth .item {
   line-height: 30px;
