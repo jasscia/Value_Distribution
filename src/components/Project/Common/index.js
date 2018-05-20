@@ -46,12 +46,9 @@ export class ProInfo extends Component{
             </div>
     }
 }
-
-
 export class Detail extends Component{
     render(){
         let element = this.props.state.detail.map((person,i) => {
-            // console.log(this.props.state.detail.indexOf(person));
             return <div key={i} className="list">
                 <label >{person.name}</label>
                 <input value={person.value} 

@@ -7,7 +7,7 @@ import './project.less';
 import './projectlist.less';
 class Project extends Component{
    
-    render(){console.log(this.props);
+    render(){
          let {match} = this.props;
           return <div className="myApp">
                     <Route exact path={`${match.path}`} component={ProjectList}/>

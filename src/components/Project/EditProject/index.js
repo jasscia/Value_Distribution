@@ -14,7 +14,6 @@ class  CreatePro extends Component{
             day_num:'',
             base_scale:'',
             detail:[],
-
             baseUnitWorth:'',
             proUnitWorth:''
         };
@@ -63,9 +62,7 @@ class  CreatePro extends Component{
             proUnitWorth,
             base_scale
         })
-       
     }
-
     async updateProInfo(){
         let itemInfo = {
             project_name:this.state.project_name,
@@ -78,11 +75,9 @@ class  CreatePro extends Component{
         await putProjectItem(this.activeItemId,itemInfo)
               this.props.history.goBack()
     }; 
-    
     render(){
-
         let {activeItem} = this.state;
-    return <div className="createInfo" >
+        return <div className="createInfo" >
                 <ProInfo state={this.state} handleNewItem={this.handleNewItem} baseUnitWorth={this.state.baseUnitWorth}/>
                 <Detail  state={this.state} handleNewItem={this.handleNewItem} />
                 <button onClick={()=>this.updateProInfo()}>提交</button>

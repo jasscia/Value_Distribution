@@ -5,9 +5,7 @@ import {updataProjectList} from '../../services/projectServices';
 export class PersonList extends Component{
     constructor(props){
         super(props);
-       
     }
-   
     render(){
         let element="";
         if(this.props.userList&&this.props.userList.length){
@@ -47,23 +45,17 @@ export class PersonListWithWorth extends Component{
     projectList.forEach((item)=>{
         let detail=item.detail;
         let worth=item.base_scale*item.worth;
-        console.log(worth)
-        console.log(detail)
         detail.forEach((item)=>{
             if(!totalWorth[item.name]){
                 totalWorth[item.name]=parseFloat(item.value)*worth;
-
             }else{
-
                 totalWorth[item.name]+=(parseFloat(item.value)*worth)
             }
         })
     })
-    
     this.setState({
         totalWorth
     })
-    
 }
 render(){
     let element="";
@@ -79,7 +71,6 @@ render(){
                     <input type="button"
                             className="more" 
                             value=">" 
-                            // onClick={(e)=>this.props.showDetail}
                             />
                 </div>
         })

@@ -25,7 +25,6 @@ class BaseData extends Component{
         })
     }
     handleBaseData(e,target){
-
         let baseData={id:this.state.baseData.id,
                         baseWorth:(target==='baseWorth')?e.target.value:this.state.baseData.baseWorth,
                         basePerson:(target==='basePerson')?e.target.value:this.state.baseData.basePerson,

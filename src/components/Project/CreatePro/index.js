@@ -36,7 +36,6 @@ class  CreatePro extends Component{
             detail:detail,
             baseUnitWorth:baseData.baseUnitWorth
         })
-    
     };
     //这个函数用来临时存放 各个参数更新
     async handleNewItem(e,target,index,key){
@@ -89,7 +88,6 @@ class  CreatePro extends Component{
 
         let { project_name, worth, person_num, day_num, base_scale, detail } = this.state;
         let itemInfo = { project_name, worth, person_num, day_num, base_scale, detail } 
-        console.log(itemInfo)
         await postProjectList(itemInfo);
         this.props.history.goBack();
     }; 

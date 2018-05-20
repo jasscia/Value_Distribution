@@ -4,11 +4,6 @@ import './Myapp.less';
 import BaseData from './BaseData';
 import Project from './Project';
 import DeliverWorth from './DeliverWorth';
-
-
-
-
-
 class Myapp extends Component{
     constructor(){
         super();
@@ -23,7 +18,6 @@ class Myapp extends Component{
         })
     }
     render(){
-
         return <Router>
             <div className="myApp">
                 <nav className="tabBar">
